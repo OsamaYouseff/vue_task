@@ -63,14 +63,16 @@ const TestimonialData = [
         />
       </div>
     </div>
-    <div
-      class="customer-testimonials d-flex justify-content-center flex-nowrap gap-2 overflow-x-hidden"
-    >
-      <TestimonialBox
-        v-for="testimonial in TestimonialData"
-        :key="testimonial.id"
-        :testimonial="testimonial"
-      />
+    <div class="blur-bg">
+      <div
+        class="customer-testimonials d-flex justify-content-center flex-nowrap gap-2"
+      >
+        <TestimonialBox
+          v-for="testimonial in TestimonialData"
+          :key="testimonial.id"
+          :testimonial="testimonial"
+        />
+      </div>
     </div>
   </section>
 </template>
@@ -88,6 +90,23 @@ h2 {
     max-width: 260px !important;
   }
 }
+
+/* .blur-bg {
+  position: relative;
+  width: 100vw;
+
+  filter: blur(8px);
+
+  margin-bottom: 450px;
+  z-index: -1;
+}
+.customer-testimonials {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+} */
 
 .arrow {
   cursor: pointer;

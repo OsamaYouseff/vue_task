@@ -50,4 +50,13 @@ button {
   margin: auto;
   border-color: #ececec;
 }
+
+@media (max-width: 48rem) {
+  h2 {
+    font-size: 32px;
+  }
+  button {
+    width: 100%;
+  }
+}
 </style>

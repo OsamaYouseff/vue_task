@@ -91,14 +91,6 @@ section {
   min-height: 41.4375rem;
 }
 
-@media (max-width: 48rem) {
-  .image {
-    max-height: 28rem;
-    min-height: 30rem;
-    background-size: 110%;
-  }
-}
-
 .star-icon1 {
   position: absolute;
   right: 2%;
@@ -115,12 +107,6 @@ button {
   height: 3.25rem;
   width: 13.125rem;
   font-size: 1rem;
-}
-
-@media (max-width: 48rem) {
-  button {
-    width: 100%;
-  }
 }
 
 .stats {
@@ -159,6 +145,21 @@ button {
 }
 
 @media (max-width: 48rem) {
+  .content h1 {
+    font-size: 42px;
+    line-height: 44px;
+    letter-spacing: -2px;
+    font-weight: 900 !important;
+  }
+
+  .image {
+    max-height: 28rem;
+    min-height: 30rem;
+    background-size: 110%;
+  }
+  button {
+    width: 100%;
+  }
   .brands img {
     max-width: 7.1875rem;
     min-height: 2.1875rem;

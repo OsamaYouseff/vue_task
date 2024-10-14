@@ -1,21 +1,46 @@
 <script setup lang="ts">
 import Rating from "primevue/rating";
+import StepPanel from "primevue/steppanel";
 import { ref } from "vue";
 
-const rating = ref(4);
+const discountAvailable = ref<boolean>(true);
+const rating = ref<number>(4);
 </script>
 <template>
   <div class="card col-md-3 border-0">
     <div class="img"></div>
     <div class="card-body">
       <h5 class="card-title mb-2">T-Shirt with Tape Details</h5>
-      <Rating
-        v-model="rating"
-        class="mb-2 gap-2"
-        style="color: #ffc633"
-        readonly
-      />
-      <p class="fs-4">$<span class="fw-bold">120</span></p>
+      <div class="d-flex align-items-center mb-2 gap-2">
+        <Rating
+          v-model="rating"
+          class="gap-1"
+          style="color: #ffc633"
+          readonly
+        />
+        <p class="ms-2 mb-0" style="color: #666666; font-size: 14px">
+          <span class="fw-semibold text-black">{{ rating.toFixed(1) }}</span
+          >/5
+        </p>
+      </div>
+      <div class="price-wrapper d-flex align-items-center gap-2">
+        <p class="fs-4" style="font-size: 24px; font-weight: 500">
+          $<span>120</span>
+        </p>
+        <p
+          v-if="discountAvailable"
+          class="old-price fs-4"
+          style="
+            font-size: 24px;
+            font-weight: 700;
+            color: hsla(0, 0%, 0%, 0.4);
+            text-decoration: line-through;
+          "
+        >
+          $<span>232</span>
+        </p>
+        <span v-if="discountAvailable" class="discount">-20%</span>
+      </div>
     </div>
   </div>
 </template>
@@ -52,5 +77,18 @@ h5 {
   p {
     font-size: 15px !important;
   }
+}
+
+.discount {
+  width: Fixed (58px) px;
+  height: Hug (28px) px;
+  top: 2219px;
+  left: 231px;
+  padding: 6px 14px 6px 14px;
+  gap: 12px;
+  border-radius: 62px;
+  opacity: 0px;
+  background: hsla(0, 100%, 60%, 0.1);
+  color: #ff3333;
 }
 </style>

@@ -3,8 +3,8 @@ import MenuDrawer from "./MenuDrawer.vue";
 </script>
 
 <template>
-  <div class="container-lg">
-    <header class="d-flex align-items-center justify-content-between py-2">
+  <div class="container-lg px-0">
+    <header class="d-flex align-items-center justify-content-between py-3">
       <div class="d-flex align-items-center gap-3">
         <MenuDrawer />
         <!-- logo -->
@@ -43,9 +43,17 @@ import MenuDrawer from "./MenuDrawer.vue";
 
       <!-- icons -->
       <div class="d-flex gap-3 align-items-center text-black">
-        <img src="@/assets/icons/search-icon.svg" alt="cart-icon" />
-        <img src="@/assets/icons/cart.svg" alt="cart-icon" />
-        <img src="@/assets/icons/user.svg" alt="user-icon" />
+        <img
+          class="d-sm-block d-md-none"
+          src="@/assets/icons/search-icon.svg"
+          alt="cart-icon"
+        />
+        <RouterLink to="/cart"
+          ><img src="@/assets/icons/cart.svg" alt="cart-icon" />
+        </RouterLink>
+        <RouterLink to="/"
+          ><img src="@/assets/icons/user.svg" alt="user-icon" />
+        </RouterLink>
       </div>
     </header>
   </div>
@@ -54,6 +62,12 @@ import MenuDrawer from "./MenuDrawer.vue";
 <style scoped>
 header {
   gap: 40px;
+}
+
+@media (max-width: 991px) {
+  header {
+    padding: 0 4px;
+  }
 }
 
 .logo {

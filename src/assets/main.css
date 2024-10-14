@@ -112,6 +112,9 @@
     font-family: Poppins, sans-serif;
 }
 
+body {
+    overflow-x: hidden !important;
+}
 p,
 h1,
 h2,

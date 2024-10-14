@@ -35,7 +35,7 @@ section {
   min-height: 289px;
   border-radius: 20px;
   overflow: hidden;
-  background-color: #fff !important;
+  background-color: #fcfcfc !important;
   position: relative;
 }
 @media (max-width: 767px) {
@@ -44,6 +44,12 @@ section {
   }
   .img-container {
     width: 100% !important;
+  }
+  h2 {
+    font-size: 37px !important;
+    font-weight: bolder !important;
+    padding: 30px;
+    margin-bottom: 0 !important;
   }
 }
 

@@ -11,7 +11,7 @@
           class="input-group d-flex align-items-center gap-3 flex-column justify-content-center"
         >
           <div class="input-container w-100">
-            <img src="../assets/icons/mail.svg" alt="mail-icon" />
+            <img src="@/assets/icons/mail.svg" alt="mail-icon" />
             <input
               class="w-100 h-100 rounded-pill border-0 pl-4"
               type="text"
@@ -118,6 +118,13 @@ footer {
   font-weight: 900;
   width: 600px;
 }
+@media (max-width: 991px) {
+  .news-letter {
+    margin-top: 200px;
+    margin-bottom: -170px;
+  }
+}
+
 @media (max-width: 768px) {
   .news-letter {
     margin-top: 200px;

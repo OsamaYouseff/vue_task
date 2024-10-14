@@ -25,10 +25,14 @@ const isVisible = ref<boolean>(true);
 </template>
 
 <style scoped>
+.container-lg {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
 .close-btn {
   cursor: pointer;
   right: 0 !important;
-  transform: translateX(-12px);
 }
 
 @media (max-width: 768px) {

@@ -12,6 +12,5 @@ import FooterComponent from "../components/FooterComponent.vue";
     <ProductsComponent />
     <BrowseByStyle />
     <TestimonialsComponent />
-    <FooterComponent />
   </div>
 </template>
