@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import ReviewBox from "./ReviewBox.vue";
+
+const currentSection = ref<number>(2);
 
 const reviewsData = [
   {
@@ -58,6 +61,7 @@ const reviewsData = [
   },
 ];
 </script>
+
 <template>
   <section class="container-lg">
     <!-- Navigation Header -->
@@ -65,9 +69,27 @@ const reviewsData = [
       class="navigation-header d-flex justify-content-between align-items-center"
       style="border-bottom: 1px solid hsla(0, 0%, 0%, 0.1)"
     >
-      <div class="nav-section">Product Details</div>
-      <div class="nav-section active">Rating & Reviews</div>
-      <div class="nav-section">FAQs</div>
+      <div
+        @click="currentSection = 1"
+        :class="{ active: currentSection === 1 }"
+        class="nav-section"
+      >
+        Product Details
+      </div>
+      <div
+        @click="currentSection = 2"
+        :class="{ active: currentSection === 2 }"
+        class="nav-section"
+      >
+        Rating & Reviews
+      </div>
+      <div
+        @click="currentSection = 3"
+        :class="{ active: currentSection === 3 }"
+        class="nav-section"
+      >
+        FAQs
+      </div>
     </div>
     <div class="nav-section-container">
       <div
@@ -129,6 +151,7 @@ const reviewsData = [
   font-size: 20px;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
+  border-bottom: 1px solid transparent;
 }
 
 .nav-section:hover {
@@ -136,7 +159,7 @@ const reviewsData = [
 }
 
 .nav-section.active {
-  border-bottom: 1px solid #000;
+  border-bottom-color: #000;
   color: hsla(0, 0%, 0%, 1);
 }
 

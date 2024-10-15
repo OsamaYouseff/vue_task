@@ -8,33 +8,42 @@ const itemAmount = ref<number>(2);
 const discountAvailable = ref<boolean>(true);
 const rating = ref<number>(4);
 
-const activeImg = ref<number>(0);
+const activeImg = ref<number>(1);
 const activeColor = ref<number>(0);
 const activeSize = ref<number>(2);
 
-// interface Image {
-//   id: number;
-//   src: string;
-//   alt: string;
-// }
+const currentImgUrl = ref<string>(
+  "https://s3-alpha-sig.figma.com/img/f04a/017d/b094f9a20c2328f54a31b153619784f3?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=E-602NepkNOhB4IjylGkyZb-vW6W5QlRBUZQLhDNVvbXCfKdHTci1LEg~gk3Gq4~f03vQBJLyDdpYehBGeHVUtCxiauX3Cn5LUaFEfVTyOUsDwiQpaxOI7w4Uvz4PWuhYpMxwNe3Qelv8oaobWuyVEZYg7PcRhmTVfXBhJne~g6F~L3CdYriHXDBeACw6zTurZSfffRxrq16ciHiRU~r7GKEYRkMjcdgGVj56xXUwkJCuzYjbluJcgPO3gmKeki7G6t0sQAwGsmEXJF2-Bl5Dv9EME91eOrmjatX2IlaagwpM-idrXttdPHhDs8rc8Avp1klApcqm~LLvmsMZCGFYg__"
+);
 
-// const images: Image[] = [
-//   {
-//     id: 1,
-//     src: "@/assets/images/a2.png",
-//     alt: "preview-image",
-//   },
-//   {
-//     id: 2,
-//     src: "@/assets/images/a3.png",
-//     alt: "preview-image",
-//   },
-//   {
-//     id: 3,
-//     src: "@/assets/images/a4.png",
-//     alt: "preview-image",
-//   },
-// ];
+const toggleCurrentImg = (id: number, src: string) => {
+  activeImg.value = id;
+  currentImgUrl.value = src;
+};
+
+interface Image {
+  id: number;
+  src: string;
+  alt: string;
+}
+
+const images: Image[] = [
+  {
+    id: 1,
+    src: "https://s3-alpha-sig.figma.com/img/f04a/017d/b094f9a20c2328f54a31b153619784f3?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=E-602NepkNOhB4IjylGkyZb-vW6W5QlRBUZQLhDNVvbXCfKdHTci1LEg~gk3Gq4~f03vQBJLyDdpYehBGeHVUtCxiauX3Cn5LUaFEfVTyOUsDwiQpaxOI7w4Uvz4PWuhYpMxwNe3Qelv8oaobWuyVEZYg7PcRhmTVfXBhJne~g6F~L3CdYriHXDBeACw6zTurZSfffRxrq16ciHiRU~r7GKEYRkMjcdgGVj56xXUwkJCuzYjbluJcgPO3gmKeki7G6t0sQAwGsmEXJF2-Bl5Dv9EME91eOrmjatX2IlaagwpM-idrXttdPHhDs8rc8Avp1klApcqm~LLvmsMZCGFYg__",
+    alt: "preview-image",
+  },
+  {
+    id: 2,
+    src: "https://s3-alpha-sig.figma.com/img/aecd/8196/485b30fd30b3226e09bb8f8e494c260b?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=JDSAOREDmk5TCB75ZZw2MRdZqb0PqzkMu4QJxTxmWu1zHSZ3KxD~CsA8yMBd0BkrNjXfTzcvQle0ch67xRnXhY-iomZFjKF99l3Czqa2O7m8CPtcm-IFo6PX2NTIY1MWkhyLnTojM6zS4b~jRX-8-VvYUoAF6JpAHXz92IWffF1KxKATrRO9m4oyqIC8mRgGaT23WFdXPkFJSFOToPhvQtrojo72l1Q5FYHVzjds0fpyJLKnGCqb74~wRRGdSe-dRzJXvCfadhwOWAOqVE8NcLCxM-ZE2vz0Dj9vaGkUfw1NCN8ROzzHFGKVxpco9XtSHTqNpqIUIlCCynXp~Dcjdw__",
+    alt: "preview-image",
+  },
+  {
+    id: 3,
+    src: "https://s3-alpha-sig.figma.com/img/6115/920b/12942762aefb7c7ac954e78b76284504?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MKQsZul0uc4q5HFN45QoH9axtPVCSknDfwrvWnekXUa2FAbfR8sezRfWmgIav7CuB1SfLdeNJ0Dcx~y3GJNW4jLBV3~7kQhH0BHnG1bggVqa~Jg8rkLUEmsIL5X9yXe6ulul4ZM~E3vUAzWqxFU53RNwrwUEcmAXXVwut1aiTVYcTsjj5JeRWMcnYBQfXt8Bq~U1j2wTzElpSSOC9LOYdDWB53clzc-K544E~Ynl9ZxGDejIVKTwFesnrZ02uDc-kKMX4PLRAZVh2xl3Z6PwmQBmzPj87P8YabxBqbTKLxGs6N3jsUxKnPT~7eYcIpUUFoWHIy~jzxhZOh4hgqlkPQ__",
+    alt: "preview-image",
+  },
+];
 </script>
 
 <template>
@@ -67,35 +76,23 @@ const activeSize = ref<number>(2);
         >
           <!-- Preview images -->
           <div class="sub-images flex-md-column flex-row">
-            <!-- <div v-for="image in images" :key="image.id">
-              <img :src="image.src" :alt="image.alt" />
-            </div> -->
             <div
               class="image-container"
-              @click="activeImg = 0"
-              :class="{ active: activeImg === 0 }"
+              :class="{ active: activeImg === image.id }"
+              v-for="image in images"
+              :key="image.id"
             >
-              <img src="@/assets/images/a2.png" alt="preview-img" />
-            </div>
-            <div
-              class="image-container"
-              @click="activeImg = 1"
-              :class="{ active: activeImg === 1 }"
-            >
-              <img src="@/assets/images/a3.png" alt="preview-img" />
-            </div>
-            <div
-              class="image-container"
-              @click="activeImg = 2"
-              :class="{ active: activeImg === 2 }"
-            >
-              <img src="@/assets/images/a4.png" alt="preview-img" />
+              <img
+                @click="toggleCurrentImg(image.id, image.src)"
+                :src="image.src"
+                :alt="image.alt"
+              />
             </div>
           </div>
 
           <!-- Current image -->
           <div class="preview-image">
-            <img src="@/assets/images/a1.png" alt="current-previewed-image" />
+            <img :src="currentImgUrl" alt="current-previewed-image" />
           </div>
         </div>
 
@@ -435,7 +432,7 @@ img {
   background: #f0f0f0;
   color: hsla(0, 0%, 0%, 0.6);
   font-size: 15px;
-  transition: all 0.35s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 .size-oval.active {

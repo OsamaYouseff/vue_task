@@ -2,9 +2,11 @@
 import Rating from "primevue/rating";
 import { ref } from "vue";
 
-const props = defineProps({
-  review: Object,
-});
+import type Review from "@/Interfaces/Review";
+
+const props = defineProps<{
+  review: Review;
+}>();
 
 const rating = ref(props.review.rating);
 </script>
