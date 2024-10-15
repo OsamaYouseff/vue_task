@@ -10,7 +10,7 @@ import CartItem from "../components/Cart/CartItem.vue";
         <router-link style="color: hsla(0, 0%, 0%, 0.6) !important" to="/"
           >Home
         </router-link>
-        <img src="../assets/icons/next-arrow.svg" alt="" />
+        <img src="../assets/icons/next-arrow.svg" alt="next-arrow-image" />
         <router-link class="text-black" to="/cart">Cart</router-link>
       </div>
 

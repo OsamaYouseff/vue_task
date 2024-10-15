@@ -46,7 +46,7 @@ h2 {
 button {
   height: 52px;
   width: 218px;
-  font-style: 16px;
+  font-size: 16px;
   margin: auto;
   border-color: #ececec;
 }

@@ -15,15 +15,21 @@ import MenuDrawer from "./MenuDrawer.vue";
 
       <!-- nav -->
       <nav class="d-none d-sm-none d-md-block">
-        <ul class="d-flex gap-3 align-items-center list-unstyled m-0 p-0">
+        <ul class="d-flex align-items-center gap-3 list-unstyled m-0 p-0">
           <li>
-            <RouterLink to="/"
-              >Shop <i class="bi bi-chevron-down"></i
-            ></RouterLink>
+            <RouterLink to="#"
+              >Shop
+              <img
+                src="@/assets/icons/chevron-down.svg"
+                alt="chevron-down-img"
+              />
+            </RouterLink>
           </li>
-          <li><RouterLink to="/">On Sale</RouterLink></li>
-          <li><RouterLink to="/">New Arrivals</RouterLink></li>
-          <li><RouterLink to="/">Brands</RouterLink></li>
+          <li>
+            <RouterLink to="#">On Sale </RouterLink>
+          </li>
+          <li><RouterLink to="#">New Arrivals</RouterLink></li>
+          <li><RouterLink to="#">Brands</RouterLink></li>
         </ul>
       </nav>
 

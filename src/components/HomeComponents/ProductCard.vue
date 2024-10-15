@@ -3,12 +3,17 @@ import Rating from "primevue/rating";
 import StepPanel from "primevue/steppanel";
 import { ref } from "vue";
 
+// const imgNum = ref<number>(Math.trunc(Math.random() * 10 + 1));
+
+// const imgUrl = ref<string>(`@/assets/images/${imgNum.value}.png`);
+
 const discountAvailable = ref<boolean>(true);
 const rating = ref<number>(4);
 </script>
 <template>
   <div class="card col-md-3 border-0">
     <div class="img"></div>
+
     <div class="card-body">
       <h5 class="card-title mb-2">T-Shirt with Tape Details</h5>
       <div class="d-flex align-items-center mb-2 gap-2">
@@ -24,12 +29,10 @@ const rating = ref<number>(4);
         </p>
       </div>
       <div class="price-wrapper d-flex align-items-center gap-2">
-        <p class="fs-4" style="font-size: 24px; font-weight: 500">
-          $<span>120</span>
-        </p>
+        <p style="font-size: 24px; font-weight: 500">$<span>120</span></p>
         <p
           v-if="discountAvailable"
-          class="old-price fs-4"
+          class="old-price"
           style="
             font-size: 24px;
             font-weight: 700;
@@ -48,7 +51,17 @@ const rating = ref<number>(4);
 <style scoped>
 .card {
   max-width: 295px;
+  cursor: pointer;
 }
+
+.card .img {
+  border: 1px solid transparent !important;
+  transition: all 0.3s ease-in-out;
+}
+.card:hover .img {
+  border-color: hsla(0, 0%, 0%, 1) !important;
+}
+
 h5 {
   font-size: 18px;
 }
