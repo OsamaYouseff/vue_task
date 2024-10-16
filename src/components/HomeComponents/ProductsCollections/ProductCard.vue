@@ -3,9 +3,8 @@ import Rating from "primevue/rating";
 import { ref } from "vue";
 
 const props = defineProps({
-  id: Number,
+  id: { type: Number, required: true },
 });
-
 const discountAvailable = ref<boolean>(props.id % 3 === 0);
 const rating = ref<number>(4);
 </script>
