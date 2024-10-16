@@ -50,7 +50,7 @@ import CartItem from "../components/Cart/CartItem.vue";
           </div>
           <div class="total d-flex justify-content-between mb-3">
             <p>Total</p>
-            <p class="price-amount">$120</p>
+            <p class="price-amount" style="font-size: 20px">$120</p>
           </div>
           <!-- Promo code -->
           <div

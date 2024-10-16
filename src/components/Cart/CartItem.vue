@@ -27,6 +27,7 @@ const itemAmount = ref<number>(10);
       <div class="d-flex justify-content-between align-items-center">
         <!-- price -->
         <div class="price fw-semibold fs-4">$120</div>
+
         <!-- control quantity -->
         <div
           class="quantity d-flex gap-4 align-items-center justify-content-center px-3 py-1"

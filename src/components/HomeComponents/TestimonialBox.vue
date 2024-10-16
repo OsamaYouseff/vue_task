@@ -13,7 +13,12 @@ const rating = ref(props.testimonial.rating);
     <Rating
       v-model="rating"
       class="rating mb-2 gap-2"
-      style="color: #ffc633"
+      style="
+        color: #ffc633;
+        width: 30px !important;
+        height: 30px !important;
+        scale: 1.2;
+      "
       readonly
     />
 
@@ -21,7 +26,7 @@ const rating = ref(props.testimonial.rating);
       {{ props.testimonial.name }}
       <img src="@/assets/icons/verified.svg" alt="verified-icon" />
     </div>
-    <p class="description">
+    <p class="description" style="color: hsla(0, 0%, 0%, 0.6)">
       {{ props.testimonial.description }}
     </p>
   </div>
@@ -29,27 +34,18 @@ const rating = ref(props.testimonial.rating);
 
 <style scoped>
 .card {
-  width: 400px;
   min-width: 400px;
-}
-
-.description {
-  color: hsla(0, 0%, 0%, 0.6);
+  max-width: 100%;
 }
 
 @media screen and (max-width: 48rem) {
   .card {
-    min-width: 358px;
+    min-width: 350px;
+    max-width: 328px !important;
     padding: 10px 15px !important;
   }
   .description {
     font-size: 14px;
   }
-}
-
-.rating {
-  width: 30px !important;
-  height: 30px !important;
-  scale: 1.2;
 }
 </style>

@@ -1,17 +1,12 @@
 <script setup lang="ts">
 import Rating from "primevue/rating";
-import StepPanel from "primevue/steppanel";
 import { ref } from "vue";
-
-// const imgNum = ref<number>(Math.trunc(Math.random() * 10 + 1));
-
-// const imgUrl = ref<string>(`@/assets/images/${imgNum.value}.png`);
 
 const discountAvailable = ref<boolean>(true);
 const rating = ref<number>(4);
 </script>
 <template>
-  <div class="card col-md-3 border-0">
+  <div class="card border-0 p-0">
     <div class="img"></div>
 
     <div class="card-body">
@@ -28,6 +23,8 @@ const rating = ref<number>(4);
           >/5
         </p>
       </div>
+
+      <!-- price wrapper -->
       <div class="price-wrapper d-flex align-items-center gap-2">
         <p style="font-size: 24px; font-weight: 500">$<span>120</span></p>
         <p
@@ -54,10 +51,19 @@ const rating = ref<number>(4);
   cursor: pointer;
 }
 
-.card .img {
+.img {
+  min-width: 100%;
+  min-height: 298px;
+  max-height: 100%;
+  background: no-repeat url("@/assets/images/1.png");
+  background-color: #f0eeed;
+  background-position: center;
+  background-size: 100%;
+  border-radius: 20px;
   border: 1px solid transparent !important;
   transition: all 0.3s ease-in-out;
 }
+
 .card:hover .img {
   border-color: hsla(0, 0%, 0%, 1) !important;
 }
@@ -66,19 +72,9 @@ h5 {
   font-size: 18px;
 }
 
-.img {
-  min-width: 100%;
-  min-height: 298px;
-  max-height: 100%;
-  background: no-repeat url("@/assets/images/1.png");
-  background-position: center;
-  background-size: 100%;
-  border-radius: 20px;
-}
-
 @media (max-width: 48rem) {
   .card {
-    max-width: 180px;
+    max-width: 168px !important;
     padding: 0;
   }
   .img {

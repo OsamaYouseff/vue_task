@@ -3,7 +3,7 @@
   <section>
     <div class="h-100 container-lg">
       <div
-        class="hero-section h-100 d-flex align-items-center justify-content-between row"
+        class="hero-section h-100 d-flex align-items-center justify-content-between row flex-wrap"
       >
         <div class="content col-12 col-md-6 p-3">
           <h1 class="mb-3 fw-bold d-md-fs-5">
@@ -67,9 +67,13 @@ section {
   background: #f2f0f1;
 }
 
+.hero-section > div {
+  flex-grow: 1;
+}
+
 .content h1 {
   font-size: 4.375rem;
-  width: 36.0625rem;
+  /* width: 36.0625rem; */
   letter-spacing: -0.375rem;
   word-spacing: 0.3125rem;
   line-height: 4rem;
@@ -81,6 +85,9 @@ section {
 }
 
 .image {
+  min-height: 41.4375rem;
+  min-width: 550px;
+  max-width: 100% !important;
   position: relative;
   display: flex;
   justify-content: flex-end;
@@ -88,7 +95,6 @@ section {
   background: url("@/assets/images/hero-img.jpg") no-repeat center;
   background-size: 100%;
   background-position: center 8%;
-  min-height: 41.4375rem;
 }
 
 .star-icon1 {
@@ -153,6 +159,7 @@ button {
   }
 
   .image {
+    min-width: 100% !important;
     max-height: 28rem;
     min-height: 30rem;
     background-size: 110%;

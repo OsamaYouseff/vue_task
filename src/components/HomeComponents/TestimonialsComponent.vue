@@ -50,7 +50,7 @@ const TestimonialData = [
   <section class="container-lg mb-5">
     <div class="d-flex justify-content-between mb-5">
       <h2>OUR HAPPY CUSTOMERS</h2>
-      <div class="row d-flex align-items-end">
+      <div class="row d-flex align-items-end px-1">
         <img
           class="arrow"
           src="@/assets/icons/left-arrow.svg"
@@ -63,9 +63,10 @@ const TestimonialData = [
         />
       </div>
     </div>
-    <div class="blur-bg">
+    <div class="wrapper">
       <div
-        class="customer-testimonials d-flex justify-content-center flex-nowrap gap-2"
+        class="customer-testimonials position-relative d-flex justify-content-center flex-nowrap"
+        style="gap: 24px"
       >
         <TestimonialBox
           v-for="testimonial in TestimonialData"
@@ -91,22 +92,33 @@ h2 {
   }
 }
 
-/* .blur-bg {
-  position: relative;
-  width: 100vw;
-
-  filter: blur(8px);
-
-  margin-bottom: 450px;
-  z-index: -1;
-}
-.customer-testimonials {
-  width: 100%;
-  height: 100%;
+.customer-testimonials::before,
+.customer-testimonials::after {
+  content: "";
+  position: absolute;
   top: 0;
-  left: 0;
-  z-index: 2;
-} */
+  width: 30%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  z-index: 22;
+}
+.customer-testimonials::before {
+  left: -30%;
+}
+.customer-testimonials::after {
+  right: -30%;
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    overflow: hidden;
+  }
+
+  .customer-testimonials::before,
+  .customer-testimonials::after {
+    display: none;
+  }
+}
 
 .arrow {
   cursor: pointer;

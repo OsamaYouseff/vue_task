@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import MenuDrawer from "./MenuDrawer.vue";
+
+const cartItemsNum = ref<number>(0);
 </script>
 
 <template>
@@ -54,8 +57,25 @@ import MenuDrawer from "./MenuDrawer.vue";
           src="@/assets/icons/search-icon.svg"
           alt="cart-icon"
         />
-        <RouterLink to="/cart"
+        <RouterLink class="cart-icon position-relative" to="/cart"
           ><img src="@/assets/icons/cart.svg" alt="cart-icon" />
+          <span
+            class="position-absolute"
+            style="
+              width: 0.9375rem;
+              height: 0.9375rem;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              top: 0;
+              right: -0.5rem;
+              background: #ff3333;
+              color: white;
+              font-size: 0.625rem;
+              border-radius: 50%;
+            "
+            >{{ cartItemsNum }}</span
+          >
         </RouterLink>
         <RouterLink to="/"
           ><img src="@/assets/icons/user.svg" alt="user-icon" />
@@ -67,12 +87,12 @@ import MenuDrawer from "./MenuDrawer.vue";
 
 <style scoped>
 header {
-  gap: 40px;
+  gap: 2.5rem;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   header {
-    padding: 0 4px;
+    padding: 0 0.3125rem;
   }
 }
 
@@ -80,34 +100,43 @@ header {
   font-weight: 900;
 }
 
-li {
+li a {
   cursor: pointer;
+}
+
+li a {
+  font-size: 16px !important;
+  transition: all 0.35s ease-in-out;
+  border-bottom: 1px solid transparent;
+}
+li:hover a {
+  border-color: #180400;
 }
 
 input {
   background: #f0f0f0;
-  padding-left: 40px;
+  padding-left: 2.5rem;
 }
 
 .bi-search {
-  left: 15px !important;
+  left: 0.9375rem !important;
   color: #909090;
   font-weight: bold;
 }
 
 a {
   color: #000;
-  font-size: 18px;
+  font-size: 1.125rem;
   text-decoration: none;
 }
 
 .offcanvas {
   background: #f0f0f0;
-  padding: 20px;
+  padding: 1.25rem;
 }
 
 .btn-close {
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 img {

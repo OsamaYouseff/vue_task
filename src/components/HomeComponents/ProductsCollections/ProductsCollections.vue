@@ -6,7 +6,7 @@ import ProductCard from "./ProductCard.vue";
     <div class="new-arrivals py-4 d-flex flex-column">
       <h2 class="text-center fw-bold nb-3">NEW ARRIVALS</h2>
       <div
-        class="products d-flex flex-wrap justify-content-center gap-2 row py-5"
+        class="products d-flex flex-wrap justify-content-between gap-3 row py-5"
       >
         <ProductCard />
         <ProductCard />
@@ -20,7 +20,7 @@ import ProductCard from "./ProductCard.vue";
     <div class="top-selling py-5 d-flex flex-column border-0">
       <h2 class="text-center fw-bold nb-3">TOP SELLING</h2>
       <div
-        class="products d-flex flex-wrap justify-content-center gap-2 row py-5"
+        class="products d-flex flex-wrap justify-content-between gap-3 row py-5"
       >
         <ProductCard />
         <ProductCard />
@@ -52,6 +52,9 @@ button {
 }
 
 @media (max-width: 48rem) {
+  .products {
+    justify-content: center !important;
+  }
   h2 {
     font-size: 32px;
   }

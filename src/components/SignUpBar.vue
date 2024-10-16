@@ -12,7 +12,7 @@ const isVisible = ref<boolean>(true);
     <div
       class="container-lg position-relative d-flex align-items-center py-1 justify-content-center gap-1"
     >
-      <p class="">Sign up and get 20% off to your first order.</p>
+      <p>Sign up and get 20% off to your first order.</p>
       <a href="#" class="text-white">Sign Up Now</a>
       <div
         @click="isVisible = false"

@@ -19,7 +19,8 @@
     >
       <button
         type="button"
-        class="btn-close"
+        class="btn-close mb-3"
+        style="font-size: 20px"
         data-bs-dismiss="offcanvas"
         aria-label="Close"
       ></button>
@@ -52,10 +53,6 @@ a {
 .offcanvas {
   background: #f0f0f0;
   padding: 20px;
-}
-
-.btn-close {
-  font-size: 20px;
 }
 
 li {

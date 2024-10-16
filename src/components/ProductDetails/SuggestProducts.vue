@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ProductCard from "../HomeComponents/ProductCard.vue";
+import ProductCard from "@/components/HomeComponents/ProductsCollections/ProductCard.vue";
 </script>
 <template>
   <div class="new-arrivals py-4 d-flex flex-column">

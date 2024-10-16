@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import HeroSectionVue from "../components/HomeComponents/HeroSection.vue";
-import ProductsComponent from "../components/HomeComponents/ProductsComponent.vue";
+import ProductsCollections from "../components/HomeComponents/ProductsCollections/ProductsCollections.vue";
 import BrowseByStyle from "../components/HomeComponents/BrowseByStyle.vue";
 import TestimonialsComponent from "../components/HomeComponents/TestimonialsComponent.vue";
 import FooterComponent from "../components/FooterComponent.vue";
@@ -9,7 +9,7 @@ import FooterComponent from "../components/FooterComponent.vue";
 <template>
   <div>
     <HeroSectionVue />
-    <ProductsComponent />
+    <ProductsCollections />
     <BrowseByStyle />
     <TestimonialsComponent />
   </div>
