@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import ProductCard from "./ProductCard.vue";
+
+const showedProductsNum1 = ref<number>(4);
+const showedProductsNum2 = ref<number>(4);
 </script>
 <template>
   <section class="container-lg mt-4">
@@ -8,12 +12,12 @@ import ProductCard from "./ProductCard.vue";
       <div
         class="products d-flex flex-wrap justify-content-between gap-3 row py-5"
       >
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        <ProductCard v-for="i in showedProductsNum1" :key="i" :id="i" />
       </div>
-      <button class="btn bg-white text-black rounded-pill py-2 px-2 mb-5">
+      <button
+        @click="showedProductsNum1 += 4"
+        class="btn bg-white text-black rounded-pill py-2 px-2 mb-5"
+      >
         VIEW ALL
       </button>
     </div>
@@ -22,12 +26,12 @@ import ProductCard from "./ProductCard.vue";
       <div
         class="products d-flex flex-wrap justify-content-between gap-3 row py-5"
       >
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
+        <ProductCard v-for="i in showedProductsNum2" :key="i" :id="i" />
       </div>
-      <button class="btn bg-white text-black rounded-pill py-2 px-2 mb-5">
+      <button
+        @click="showedProductsNum2 += 4"
+        class="btn bg-white text-black rounded-pill py-2 px-2 mb-5"
+      >
         VIEW ALL
       </button>
     </div>

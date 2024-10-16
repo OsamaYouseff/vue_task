@@ -3,7 +3,7 @@ import ExtraProductInfo from "@/components/ProductDetails/ExtraProductInfo.vue";
 import SuggestProducts from "@/components/ProductDetails/SuggestProducts.vue";
 
 import Rating from "primevue/rating";
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 const itemAmount = ref<number>(2);
 const discountAvailable = ref<boolean>(true);
 const rating = ref<number>(4);
@@ -44,6 +44,13 @@ const images: Image[] = [
     alt: "preview-image",
   },
 ];
+
+onMounted(() => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});
 </script>
 
 <template>

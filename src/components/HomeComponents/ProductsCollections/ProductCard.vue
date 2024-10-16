@@ -2,12 +2,18 @@
 import Rating from "primevue/rating";
 import { ref } from "vue";
 
-const discountAvailable = ref<boolean>(true);
+const props = defineProps({
+  id: Number,
+});
+
+const discountAvailable = ref<boolean>(props.id % 3 === 0);
 const rating = ref<number>(4);
 </script>
 <template>
   <div class="card border-0 p-0">
-    <div class="img"></div>
+    <RouterLink to="/product-details/1">
+      <div class="img"></div>
+    </RouterLink>
 
     <div class="card-body">
       <h5 class="card-title mb-2">T-Shirt with Tape Details</h5>
