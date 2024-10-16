@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import MenuDrawer from "./MenuDrawer.vue";
-
 const cartItemsNum = ref<number>(0);
 </script>
 

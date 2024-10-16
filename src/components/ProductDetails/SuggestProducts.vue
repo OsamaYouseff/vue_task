@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import ProductCard from "@/components/HomeComponents/ProductsCollections/ProductCard.vue";
-import { ref } from "vue";
-
-const showedProductsNum = ref<number>(4);
 </script>
 <template>
   <div class="new-arrivals py-4 d-flex flex-column">
@@ -12,7 +9,10 @@ const showedProductsNum = ref<number>(4);
     <div
       class="products d-flex flex-wrap justify-content-center gap-2 row py-5"
     >
-      <ProductCard v-for="i in showedProductsNum" :key="i" :id="i" />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
+      <ProductCard />
     </div>
   </div>
 </template>

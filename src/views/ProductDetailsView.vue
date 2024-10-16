@@ -1,10 +1,19 @@
 <script setup lang="ts">
 import ExtraProductInfo from "@/components/ProductDetails/ExtraProductInfo.vue";
 import SuggestProducts from "@/components/ProductDetails/SuggestProducts.vue";
-
 import Rating from "primevue/rating";
 import { onMounted, ref } from "vue";
-const itemAmount = ref<number>(2);
+import { storeToRefs } from "pinia";
+import { useProductsStore } from "@/stores/productsStore";
+
+const props = defineProps<{
+  id: string;
+}>();
+
+const productsStore = useProductsStore();
+const { product, isLoading } = storeToRefs(productsStore);
+
+const itemAmount = ref<number>(1);
 const discountAvailable = ref<boolean>(true);
 const rating = ref<number>(4);
 
@@ -12,9 +21,7 @@ const activeImg = ref<number>(1);
 const activeColor = ref<number>(0);
 const activeSize = ref<number>(2);
 
-const currentImgUrl = ref<string>(
-  "https://s3-alpha-sig.figma.com/img/f04a/017d/b094f9a20c2328f54a31b153619784f3?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=E-602NepkNOhB4IjylGkyZb-vW6W5QlRBUZQLhDNVvbXCfKdHTci1LEg~gk3Gq4~f03vQBJLyDdpYehBGeHVUtCxiauX3Cn5LUaFEfVTyOUsDwiQpaxOI7w4Uvz4PWuhYpMxwNe3Qelv8oaobWuyVEZYg7PcRhmTVfXBhJne~g6F~L3CdYriHXDBeACw6zTurZSfffRxrq16ciHiRU~r7GKEYRkMjcdgGVj56xXUwkJCuzYjbluJcgPO3gmKeki7G6t0sQAwGsmEXJF2-Bl5Dv9EME91eOrmjatX2IlaagwpM-idrXttdPHhDs8rc8Avp1klApcqm~LLvmsMZCGFYg__"
-);
+const currentImgUrl = ref<string | null>(product.value?.images);
 
 const toggleCurrentImg = (id: number, src: string) => {
   activeImg.value = id;
@@ -47,14 +54,25 @@ const images: Image[] = [
 
 onMounted(() => {
   window.scrollTo({
-    top: 0,
-    behavior: "smooth",
+    top: 0, // Scroll to top
+    behavior: "smooth", // Optional for smooth scrolling
   });
+
+  productsStore.getAProduct(props.id);
 });
 </script>
 
 <template>
-  <section>
+  <div>
+    <div
+      v-if="isLoading"
+      class="d-flex justify-content-center align-items-center bg-white h-100 position-fixed top-0 start-0 end-0 bottom-0"
+      style="z-index: 999"
+    >
+      <div class="spinner-border" role="status"></div>
+    </div>
+  </div>
+  <section v-if="product">
     <div class="container-lg">
       <!-- path navigation -->
       <div class="path d-flex align-items-center gap-2">
@@ -105,7 +123,7 @@ onMounted(() => {
 
         <!-- Product details -->
         <div class="product-details">
-          <h1 class="mb-2">One Life Graphic T-shirt</h1>
+          <h1 class="mb-2">{{ product.title }}</h1>
 
           <!-- Rating -->
           <div
@@ -130,7 +148,9 @@ onMounted(() => {
 
           <!-- Price -->
           <div class="price-wrapper d-flex align-items-center gap-3 mb-2">
-            <p style="font-size: 32px; font-weight: 500">$<span>260</span></p>
+            <p style="font-size: 32px; font-weight: 500">
+              $<span>{{ product.price }}</span>
+            </p>
             <p
               v-if="discountAvailable"
               class="old-price"
@@ -141,7 +161,7 @@ onMounted(() => {
                 text-decoration: line-through;
               "
             >
-              $<span>300</span>
+              $<span>{{ product.price + product.price * 0.4 }}</span>
             </p>
             <span v-if="discountAvailable" class="discount">-40%</span>
           </div>
@@ -154,8 +174,7 @@ onMounted(() => {
               border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
             "
           >
-            This graphic t-shirt which is perfect for any occasion. Crafted from
-            a soft and breathable fabric, it offers superior comfort and style.
+            {{ product.description?.slice(0, 100) }}
           </p>
 
           <!-- Colors -->
@@ -279,6 +298,18 @@ onMounted(() => {
       <SuggestProducts />
     </div>
   </section>
+  <div v-else>
+    <h1 class="text-center mt-5 fw-bold nb-3 text-danger fs-1">
+      Page Not Found
+    </h1>
+    <RouterLink
+      class="btn text-center mt-5 text-decoration-none fw-bold fs-5 text-black rounded-pill px-5 py-2 w-100"
+      style="margin: 0 auto"
+      to="/"
+    >
+      Go Home</RouterLink
+    >
+  </div>
 </template>
 
 <style scoped>

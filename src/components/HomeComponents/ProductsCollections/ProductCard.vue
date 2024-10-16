@@ -3,19 +3,27 @@ import Rating from "primevue/rating";
 import { ref } from "vue";
 
 const props = defineProps({
-  id: { type: Number, required: true },
+  product: Object,
 });
-const discountAvailable = ref<boolean>(props.id % 3 === 0);
+
+const discountAvailable = ref<boolean>(true);
+
 const rating = ref<number>(4);
 </script>
 <template>
-  <div class="card border-0 p-0">
-    <RouterLink to="/product-details/1">
-      <div class="img"></div>
+  <div v-if="props.product" class="card border-0 p-0">
+    <RouterLink
+      :to="/product-details/ + props.product.id"
+      class="img-container"
+    >
+      <img
+        style="max-width: 100%"
+        :src="props.product.image"
+        alt=" product-img"
+      />
     </RouterLink>
-
     <div class="card-body">
-      <h5 class="card-title mb-2">T-Shirt with Tape Details</h5>
+      <h5 class="card-title mb-2">{{ props.product.title }}</h5>
       <div class="d-flex align-items-center mb-2 gap-2">
         <Rating
           v-model="rating"
@@ -24,7 +32,9 @@ const rating = ref<number>(4);
           readonly
         />
         <p class="ms-2 mb-0" style="color: #666666; font-size: 14px">
-          <span class="fw-semibold text-black">{{ rating.toFixed(1) }}</span
+          <span class="fw-semibold text-black">{{
+            rating.toFixed(1) || 0
+          }}</span
           >/5
         </p>
       </div>
@@ -56,17 +66,22 @@ const rating = ref<number>(4);
   cursor: pointer;
 }
 
-.img {
+.img-container {
   min-width: 100%;
   min-height: 298px;
-  max-height: 100%;
-  background: no-repeat url("@/assets/images/1.png");
-  background-color: #f0eeed;
-  background-position: center;
-  background-size: 100%;
+  max-height: 298px;
   border-radius: 20px;
   border: 1px solid transparent !important;
   transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0eeed;
+}
+
+img {
+  /* width: 100%; */
+  height: 100%;
 }
 
 .card:hover .img {

@@ -2,11 +2,9 @@
 import Rating from "primevue/rating";
 import { ref } from "vue";
 
-import type { Testimonial } from "@/Interfaces/Testimonial";
-
-const props = defineProps<{
-  testimonial: Testimonial;
-}>();
+const props = defineProps({
+  testimonial: Object,
+});
 
 const rating = ref(props.testimonial.rating);
 </script>

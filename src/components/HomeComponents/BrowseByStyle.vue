@@ -1,4 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { onMounted } from "vue";
+import { storeToRefs } from "pinia";
+import { useProductsStore } from "@/stores/productsStore";
+
+// Accessing the store
+
+const productsStore = useProductsStore();
+
+const { categories } = storeToRefs(productsStore);
+
+onMounted(() => {
+  productsStore.getProductsCategories();
+});
+</script>
 <template>
   <section class="container-lg mb-5">
     <div class="p-5">
@@ -7,17 +21,17 @@
         class="div d-flex flex-wrap justify-content-center"
         style="gap: 20px"
       >
-        <div class="img-container casual d-md-w-100" style="width: 36%">
-          <span class="style">casual</span>
+        <div class="img-container first d-md-w-100" style="width: 36%">
+          <span class="style">{{ categories[0] }}</span>
         </div>
-        <div class="img-container formal d-md-w-100" style="width: 60%">
-          <span class="style">formal</span>
+        <div class="img-container second d-md-w-100" style="width: 60%">
+          <span class="style">{{ categories[1] }}</span>
         </div>
-        <div class="img-container party d-md-w-100" style="width: 60%">
-          <span class="style">party</span>
+        <div class="img-container third d-md-w-100" style="width: 60%">
+          <span class="style">{{ categories[3] }}</span>
         </div>
-        <div class="img-container gym d-md-w-100" style="width: 36%">
-          <span class="style">gym</span>
+        <div class="img-container fourth d-md-w-100" style="width: 36%">
+          <span class="style">{{ categories[2] }}</span>
         </div>
       </div>
     </div>
@@ -53,21 +67,21 @@ section {
   }
 }
 
-.img-container.casual {
+.img-container.first {
   background: no-repeat url("@/assets/images/11.png");
   background-position: 45% 40%;
 }
-.img-container.formal {
+.img-container.second {
   background: no-repeat url("@/assets/images/10.png");
   background-position: -14% 26%;
   background-size: 170%;
 }
-.img-container.party {
+.img-container.third {
   background: no-repeat url("@/assets/images/9.png");
   background-position: 364% 56%;
   background-size: 95%;
 }
-.img-container.gym {
+.img-container.fourth {
   background: no-repeat url("@/assets/images/12.png");
   background-position: -198% 39%;
   background-size: 107%;
@@ -75,11 +89,10 @@ section {
 
 .style {
   position: absolute;
-  top: 35px;
-  left: 70px;
-  transform: translate(-50%, -50%);
+  top: 15px;
+  left: 15px;
   color: #000;
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 600;
 }
 </style>
