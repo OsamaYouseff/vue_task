@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import ProductCard from "./ProductCard.vue";
+import LoaderComponent from "@/components/LoaderComponent.vue";
+
 import { onMounted } from "vue";
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "@/stores/productsStore";
 
 // Accessing the store
-
 const productsStore = useProductsStore();
-
 const { products, topProducts, isLoading } = storeToRefs(productsStore);
 
 onMounted(() => {
@@ -17,6 +17,7 @@ onMounted(() => {
 });
 </script>
 <template>
+  <LoaderComponent v-if="isLoading" />
   <section class="container-lg mt-4">
     <div class="new-arrivals py-4 d-flex flex-column">
       <h2 class="text-center fw-bold nb-3">NEW ARRIVALS</h2>
@@ -57,15 +58,6 @@ onMounted(() => {
       </button>
     </div>
   </section>
-  <div>
-    <div
-      v-if="isLoading"
-      class="d-flex justify-content-center align-items-center bg-white h-100 position-fixed top-0 start-0 end-0 bottom-0"
-      style="z-index: 999"
-    >
-      <div class="spinner-border" role="status"></div>
-    </div>
-  </div>
 </template>
 
 <style scoped>

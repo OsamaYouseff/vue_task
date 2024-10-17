@@ -1,8 +1,9 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
+import type { Product } from "@/Interfaces/Product";
 
 export const useProductsStore = defineStore("products", () => {
-  const product = ref(null);
+  const product = ref<Product | null>(null);
   const products = ref([]);
   const topProducts = ref([]);
   const categories = ref([]);
@@ -53,15 +54,25 @@ export const useProductsStore = defineStore("products", () => {
     }
   };
 
-  const getAProduct = async (id: number | string) => {
+  const getAProduct = async (id: number | string): Promise<string> => {
+    isLoading.value = true;
+
     try {
       const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-      const data = await response.json();
+      const data: Product = await response.json(); // Ensure correct typing here
       product.value = data;
-      console.log(data);
     } catch (error) {
-      console.error("Failed to fetch that product with id : " + id, error);
+      console.error(
+        "Failed to fetch that product with id: " + id.toString(),
+        error
+      );
+      return "";
+    } finally {
+      isLoading.value = false;
     }
+
+    /// return the product image
+    return String(product.value?.image) ?? "";
   };
 
   return {

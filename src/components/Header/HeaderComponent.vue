@@ -1,7 +1,24 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import MenuDrawer from "./MenuDrawer.vue";
-const cartItemsNum = ref<number>(0);
+import { useCartStore } from "@/stores/cartStore";
+import { storeToRefs } from "pinia";
+import { watch } from "vue";
+
+const cartStore = useCartStore();
+const { cart } = storeToRefs(cartStore);
+const cartItemsNumber = ref<number>(cart.value.cartItemsNum || 0);
+
+onMounted(() => {
+  cartStore.getCart();
+});
+
+watch(
+  () => cart.value,
+  (newCart) => {
+    cartItemsNumber.value = newCart.cartItemsNum;
+  }
+);
 </script>
 
 <template>
@@ -73,7 +90,7 @@ const cartItemsNum = ref<number>(0);
               font-size: 0.625rem;
               border-radius: 50%;
             "
-            >{{ cartItemsNum }}</span
+            >{{ cartItemsNumber }}</span
           >
         </RouterLink>
         <RouterLink to="/"

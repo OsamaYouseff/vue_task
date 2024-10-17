@@ -1,39 +1,30 @@
 <script setup lang="ts">
+/// components
 import ExtraProductInfo from "@/components/ProductDetails/ExtraProductInfo.vue";
 import SuggestProducts from "@/components/ProductDetails/SuggestProducts.vue";
 import Rating from "primevue/rating";
-import { onMounted, ref } from "vue";
+import LoaderComponent from "@/components/LoaderComponent.vue";
+
+import { onMounted, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "@/stores/productsStore";
+import { useCartStore } from "@/stores/cartStore";
 
 const props = defineProps<{
   id: string;
 }>();
 
 const productsStore = useProductsStore();
-const { product, isLoading } = storeToRefs(productsStore);
+const { product, isLoading: productIsLoading } = storeToRefs(productsStore);
 
-const itemAmount = ref<number>(1);
-const discountAvailable = ref<boolean>(true);
-const rating = ref<number>(4);
-
-const activeImg = ref<number>(1);
-const activeColor = ref<number>(0);
-const activeSize = ref<number>(2);
-
-const currentImgUrl = ref<string | null>(product.value?.images);
-
-const toggleCurrentImg = (id: number, src: string) => {
-  activeImg.value = id;
-  currentImgUrl.value = src;
-};
+const cartStore = useCartStore();
+const { isLoading: cartIsLoading } = storeToRefs(cartStore);
 
 interface Image {
   id: number;
   src: string;
   alt: string;
 }
-
 const images: Image[] = [
   {
     id: 1,
@@ -45,33 +36,53 @@ const images: Image[] = [
     src: "https://s3-alpha-sig.figma.com/img/aecd/8196/485b30fd30b3226e09bb8f8e494c260b?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=JDSAOREDmk5TCB75ZZw2MRdZqb0PqzkMu4QJxTxmWu1zHSZ3KxD~CsA8yMBd0BkrNjXfTzcvQle0ch67xRnXhY-iomZFjKF99l3Czqa2O7m8CPtcm-IFo6PX2NTIY1MWkhyLnTojM6zS4b~jRX-8-VvYUoAF6JpAHXz92IWffF1KxKATrRO9m4oyqIC8mRgGaT23WFdXPkFJSFOToPhvQtrojo72l1Q5FYHVzjds0fpyJLKnGCqb74~wRRGdSe-dRzJXvCfadhwOWAOqVE8NcLCxM-ZE2vz0Dj9vaGkUfw1NCN8ROzzHFGKVxpco9XtSHTqNpqIUIlCCynXp~Dcjdw__",
     alt: "preview-image",
   },
-  {
-    id: 3,
-    src: "https://s3-alpha-sig.figma.com/img/6115/920b/12942762aefb7c7ac954e78b76284504?Expires=1730073600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MKQsZul0uc4q5HFN45QoH9axtPVCSknDfwrvWnekXUa2FAbfR8sezRfWmgIav7CuB1SfLdeNJ0Dcx~y3GJNW4jLBV3~7kQhH0BHnG1bggVqa~Jg8rkLUEmsIL5X9yXe6ulul4ZM~E3vUAzWqxFU53RNwrwUEcmAXXVwut1aiTVYcTsjj5JeRWMcnYBQfXt8Bq~U1j2wTzElpSSOC9LOYdDWB53clzc-K544E~Ynl9ZxGDejIVKTwFesnrZ02uDc-kKMX4PLRAZVh2xl3Z6PwmQBmzPj87P8YabxBqbTKLxGs6N3jsUxKnPT~7eYcIpUUFoWHIy~jzxhZOh4hgqlkPQ__",
-    alt: "preview-image",
-  },
 ];
+const itemQuantity = ref<number>(1);
+const discountAvailable = ref<boolean>(true);
+const rating = ref<number>(4);
+const activeImg = ref<number>(0);
+const activeColor = ref<number>(0);
+const activeSize = ref<number>(2);
+const currentImgUrl = ref<string>("");
+
+//// handlers
+const toggleCurrentImg = (id: number, src: string) => {
+  activeImg.value = id;
+  currentImgUrl.value = src;
+};
+
+const handelAddToCart = (): void => {
+  const addedProduct = {
+    ...product.value,
+  };
+
+  cartStore.addToCart(addedProduct, itemQuantity.value);
+};
 
 onMounted(() => {
   window.scrollTo({
-    top: 0, // Scroll to top
+    top: 0,
     behavior: "smooth", // Optional for smooth scrolling
   });
 
   productsStore.getAProduct(props.id);
 });
+
+//// watch product image change (fetched from api) and set it to currentImgUrl
+watch(
+  () => product.value,
+  (newProduct) => {
+    if (newProduct && newProduct.image) {
+      currentImgUrl.value = String(newProduct.image);
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
-  <div>
-    <div
-      v-if="isLoading"
-      class="d-flex justify-content-center align-items-center bg-white h-100 position-fixed top-0 start-0 end-0 bottom-0"
-      style="z-index: 999"
-    >
-      <div class="spinner-border" role="status"></div>
-    </div>
-  </div>
+  <LoaderComponent v-if="productIsLoading || cartIsLoading" />
+
   <section v-if="product">
     <div class="container-lg">
       <!-- path navigation -->
@@ -101,6 +112,13 @@ onMounted(() => {
         >
           <!-- Preview images -->
           <div class="sub-images flex-md-column flex-row">
+            <div class="image-container" :class="{ active: activeImg === 0 }">
+              <img
+                @click="toggleCurrentImg(0, product.image)"
+                :src="product.image"
+                :alt="product.title"
+              />
+            </div>
             <div
               class="image-container"
               :class="{ active: activeImg === image.id }"
@@ -161,7 +179,9 @@ onMounted(() => {
                 text-decoration: line-through;
               "
             >
-              $<span>{{ product.price + product.price * 0.4 }}</span>
+              $<span>{{
+                (product.price + product.price * 0.4).toFixed(2)
+              }}</span>
             </p>
             <span v-if="discountAvailable" class="discount">-40%</span>
           </div>
@@ -267,14 +287,14 @@ onMounted(() => {
               style="background: #f0f0f0; border-radius: 62px"
             >
               <img
-                @click="--itemAmount"
+                @click="--itemQuantity"
                 class="change-quantity-btn"
                 src="@/assets/icons/minus.svg"
                 alt="minus-sing"
               />
-              <span class="fs-5">{{ itemAmount }}</span>
+              <span class="fs-5">{{ itemQuantity }}</span>
               <img
-                @click="itemAmount++"
+                @click="itemQuantity++"
                 class="change-quantity-btn"
                 src="@/assets/icons/plus.svg"
                 alt="plus-sing"
@@ -283,6 +303,7 @@ onMounted(() => {
 
             <!-- Add to cart -->
             <button
+              @click="handelAddToCart"
               class="btn add-to-cart-btn bg-black text-white rounded-pill w-100 py-2 px-2"
             >
               Add to Cart
@@ -298,7 +319,7 @@ onMounted(() => {
       <SuggestProducts />
     </div>
   </section>
-  <div v-else>
+  <section v-else>
     <h1 class="text-center mt-5 fw-bold nb-3 text-danger fs-1">
       Page Not Found
     </h1>
@@ -309,7 +330,7 @@ onMounted(() => {
     >
       Go Home</RouterLink
     >
-  </div>
+  </section>
 </template>
 
 <style scoped>

@@ -1,19 +1,39 @@
 <script setup lang="ts">
+/// imports
 import Rating from "primevue/rating";
+import LoaderComponent from "@/components/LoaderComponent.vue";
 import { ref } from "vue";
+import { useCartStore } from "@/stores/cartStore";
+import type { Product } from "@/Interfaces/Product";
+import { storeToRefs } from "pinia";
 
-const props = defineProps({
-  product: Object,
-});
+const props = defineProps<{
+  product: Product;
+}>();
 
+/// refs
 const discountAvailable = ref<boolean>(true);
-
 const rating = ref<number>(4);
+
+const cartStore = useCartStore();
+const { isLoading } = storeToRefs(cartStore);
+
+/// methods
+const goToTop = () => {
+  if (window.location.pathname !== "/product-details/ " + props.product.id) {
+    window.location.href = "/product-details/ " + props.product.id;
+  }
+};
+const handelAddToCart = (): void => {
+  cartStore.addToCart(props.product);
+};
 </script>
+
 <template>
   <div v-if="props.product" class="card border-0 p-0">
     <RouterLink
-      :to="/product-details/ + props.product.id"
+      @click="goToTop"
+      :to="'/product-details/' + props.product.id"
       class="img-container"
     >
       <img
@@ -23,7 +43,10 @@ const rating = ref<number>(4);
       />
     </RouterLink>
     <div class="card-body">
-      <h5 class="card-title mb-2">{{ props.product.title }}</h5>
+      <h5 class="card-title mb-2">
+        {{ props.product.title.slice(0, 20)
+        }}{{ props.product.title.length > 20 ? "..." : "" }}
+      </h5>
       <div class="d-flex align-items-center mb-2 gap-2">
         <Rating
           v-model="rating"
@@ -56,8 +79,17 @@ const rating = ref<number>(4);
         </p>
         <span v-if="discountAvailable" class="discount">-20%</span>
       </div>
+
+      <button
+        @click="handelAddToCart"
+        class="btn bg-white text-black w-100 mt-3"
+        style="border: 1px solid hsla(0, 0%, 0%, 0.5)"
+      >
+        Add To Cart
+      </button>
     </div>
   </div>
+  <LoaderComponent v-if="isLoading" />
 </template>
 
 <style scoped>

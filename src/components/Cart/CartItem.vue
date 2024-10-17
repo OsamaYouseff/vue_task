@@ -1,20 +1,52 @@
 <script setup lang="ts">
 import { ref } from "vue";
-const itemAmount = ref<number>(10);
+import LoaderComponent from "@/components/LoaderComponent.vue";
+
+import type { CartProduct } from "@/Interfaces/CartProduct";
+import { storeToRefs } from "pinia";
+import { useCartStore } from "@/stores/cartStore";
+// Accessing the store
+
+const props = defineProps<{
+  cartItem: CartProduct;
+}>();
+
+const productsStore = useCartStore();
+const { isLoading } = storeToRefs(productsStore);
+const itemQuantity = ref<number>(props.cartItem.quantity);
+
+const handelDeleteProduct = () => {
+  productsStore.deleteFromCart(props.cartItem.id);
+};
+
+const handelIncreaseQuantity = () => {
+  productsStore.increaseQuantity(props.cartItem.id);
+  itemQuantity.value++;
+};
+const handelDecreaseQuantity = () => {
+  productsStore.decreaseQuantity(props.cartItem.id);
+  itemQuantity.value--;
+};
 </script>
 <template>
+  <LoaderComponent v-if="isLoading" />
   <div
     class="cart-item d-flex gap-3 justify-center align-items-center"
     style="min-width: 330px"
   >
     <div class="cart-item-img">
-      <img class="w-100" src="@/assets/images/13.png" alt="product-img" />
+      <img class="w-100 h-100" :src="props.cartItem.image" alt="product-img" />
     </div>
     <div class="cart-body flex-grow-1">
       <div class="flex-grow-1 mb-2">
         <div class="w-100 d-flex justify-content-between align-items-center">
-          <h5 class="cart-item-title fs-4">T-Shirt with Tape Details</h5>
+          <h5 class="cart-item-title fs-4">
+            {{ props.cartItem.title.slice(0, 20) }}
+            {{ props.cartItem.title.length > 20 ? "..." : "" }}
+          </h5>
           <img
+            @click="handelDeleteProduct"
+            class="delete-btn"
             style="cursor: pointer"
             src="@/assets/icons/delete.svg"
             alt="delete-icon"
@@ -26,7 +58,7 @@ const itemAmount = ref<number>(10);
 
       <div class="d-flex justify-content-between align-items-center">
         <!-- price -->
-        <div class="price fw-semibold fs-4">$120</div>
+        <div class="price fw-semibold fs-4">${{ props.cartItem.price }}</div>
 
         <!-- control quantity -->
         <div
@@ -34,14 +66,14 @@ const itemAmount = ref<number>(10);
           style="background: #f0f0f0; border-radius: 62px"
         >
           <img
-            @click="--itemAmount"
+            @click="handelDecreaseQuantity"
             class="change-quantity-btn"
             src="@/assets/icons/minus.svg"
             alt="minus-sing"
           />
-          <span class="fs-5">{{ itemAmount }}</span>
+          <span class="fs-5">{{ itemQuantity }}</span>
           <img
-            @click="itemAmount++"
+            @click="handelIncreaseQuantity"
             class="change-quantity-btn"
             src="@/assets/icons/plus.svg"
             alt="plus-sing"
@@ -70,6 +102,17 @@ const itemAmount = ref<number>(10);
   .cart-item p {
     font-size: 14px !important;
   }
+}
+
+.delete-btn {
+  transition: all 0.35s ease;
+  border: 1px solid transparent;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+.delete-btn:hover {
+  border-color: red;
 }
 
 .cart-item:not(:last-child) {

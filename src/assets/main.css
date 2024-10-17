@@ -125,3 +125,10 @@ h6 {
     margin: 0 !important;
     max-width: 100% !important;
 }
+
+.btn:hover,
+button:hover {
+    border-color: black !important ;
+    background: transparent !important;
+    color: black !important;
+}
