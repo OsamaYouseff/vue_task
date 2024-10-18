@@ -1,11 +1,10 @@
 <script setup lang="ts"></script>
 <template>
   <footer>
+
     <!-- news letter -->
     <div class="container-lg">
-      <div
-        class="news-letter bg-black text-white p-5 d-flex justify-content-between gap-3"
-      >
+      <div class="news-letter bg-black text-white p-5 d-flex justify-content-between gap-3" >
         <h2>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h2>
         <div
           class="input-group d-flex align-items-center gap-3 flex-column justify-content-center"
@@ -24,8 +23,8 @@
         </div>
       </div>
 
-      <!-- footer -->
 
+      <!-- footer -->
       <div class="footer-details p-5 d-flex justify-content-between flex-wrap">
         <div class="social-box">
           <RouterLink
@@ -106,76 +105,76 @@ footer {
 
 .news-letter {
   background: #000 !important;
-  padding: 20px;
+  padding: 1.25rem;
   margin: 0 auto;
   transform: translateY(-50%);
-  border-radius: 20px;
-  margin-top: 150px;
+  border-radius: 1.25rem;
+  margin-top: 9.375rem;
   flex-wrap: wrap;
 }
 .news-letter h2 {
-  font-size: 40px;
+  font-size: 2.5rem;
   font-weight: 900;
-  width: 600px;
+  width: 37.5rem;
 }
-@media (max-width: 991px) {
+@media (max-width: 61.9375rem) {
   .news-letter {
-    margin-top: 200px;
-    margin-bottom: -170px;
+    margin-top: 12.5rem;
+    margin-bottom: -10.625rem;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .news-letter {
-    margin-top: 200px;
-    margin-bottom: -170px;
+    margin-top: 12.5rem;
+    margin-bottom: -10.625rem;
   }
 
   .news-letter h2 {
-    font-size: 30px;
+    font-size: 1.875rem;
   }
 }
 
 .input-group {
-  max-width: 349px;
+  max-width: 21.8125rem;
 }
 .input-container {
   position: relative;
-  height: 46px;
+  height: 2.875rem;
 }
 
 .input-container img {
   position: absolute;
-  left: 15px;
+  left: .9375rem;
   top: 50%;
   transform: translateY(-50%);
 }
 
 input {
-  padding-left: 50px;
+  padding-left: 3.125rem;
 }
 
 button {
-  height: 46px;
+  height: 2.875rem;
 }
 
 .footer-details {
-  margin-top: -50px;
-  border-bottom: 1px solid hsla(0, 0%, 0%, 0.1);
-  gap: 15px 0;
+  margin-top: -3.125rem;
+  border-bottom: .0625rem solid hsla(0, 0%, 0%, 0.1);
+  gap: .9375rem 0;
 }
 
 .footer-details > div {
-  min-width: 150px;
+  min-width: 9.375rem;
 }
 
 .social-box {
-  max-width: 248px;
+  max-width: 15.5rem;
 }
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .footer-details {
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    padding-left: .625rem !important;
+    padding-right: .625rem !important;
   }
 
   .social-box {
@@ -185,13 +184,13 @@ button {
 
 .logo {
   font-weight: 900;
-  margin-top: -10px;
+  margin-top: -0.625rem;
 }
 
 .social-icons span {
-  padding: 5px;
-  width: 30px;
-  height: 30px;
+  padding: .3125rem;
+  width: 1.875rem;
+  height: 1.875rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -200,7 +199,7 @@ button {
   background: #f0f0f0;
   color: #000;
   transition: all 0.35s ease;
-  border: 1px solid hsla(0, 0%, 0%, 0.2);
+  border: .0625rem solid hsla(0, 0%, 0%, 0.2);
 }
 
 .social-icons span:hover {
@@ -222,17 +221,17 @@ h5 {
 }
 
 .payments img {
-  width: 70px;
-  transform: translateX(10px);
+  width: 4.375rem;
+  transform: translateX(.625rem);
   cursor: pointer;
 }
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .copyright {
     justify-content: center !important;
-    gap: 10px 0;
+    gap: .625rem 0;
   }
   .payments img {
-    transform: translateX(0px);
+    transform: translateX(0rem);
   }
 }
 </style>

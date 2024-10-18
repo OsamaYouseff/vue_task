@@ -73,7 +73,6 @@ section {
 
 .content h1 {
   font-size: 4.375rem;
-  /* width: 36.0625rem; */
   letter-spacing: -0.375rem;
   word-spacing: 0.3125rem;
   line-height: 4rem;

@@ -30,9 +30,9 @@
           class="h-50 d-flex gap-3 align-items-center flex-column justify-content-around list-unstyled m-0 p-0"
         >
           <li>
-            <RouterLink to="/"
-              >Shop <i class="bi bi-chevron-down"></i
-            ></RouterLink>
+            <RouterLink to="/">
+              Shop <i class="bi bi-chevron-down"></i>
+            </RouterLink>
           </li>
           <li><RouterLink to="/">On Sale</RouterLink></li>
           <li><RouterLink to="/">New Arrivals</RouterLink></li>

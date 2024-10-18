@@ -5,6 +5,8 @@ import SuggestProducts from "@/components/ProductDetails/SuggestProducts.vue";
 import Rating from "primevue/rating";
 import LoaderComponent from "@/components/LoaderComponent.vue";
 
+import type { Product } from "@/Interfaces/Product";
+
 import { onMounted, ref, watch } from "vue";
 import { storeToRefs } from "pinia";
 import { useProductsStore } from "@/stores/productsStore";
@@ -15,9 +17,8 @@ const props = defineProps<{
 }>();
 
 const productsStore = useProductsStore();
-const { product, isLoading: productIsLoading } = storeToRefs(productsStore);
-
 const cartStore = useCartStore();
+const { product, isLoading: productIsLoading } = storeToRefs(productsStore);
 const { isLoading: cartIsLoading } = storeToRefs(cartStore);
 
 interface Image {
@@ -52,8 +53,10 @@ const toggleCurrentImg = (id: number, src: string) => {
 };
 
 const handelAddToCart = (): void => {
-  const addedProduct = {
-    ...product.value,
+  if (!product) return;
+
+  const addedProduct: Product = {
+    ...product.value!,
   };
 
   cartStore.addToCart(addedProduct, itemQuantity.value);
@@ -368,7 +371,6 @@ a {
 
   .preview-product {
     padding: 4px 10px;
-    /* flex-direction: column !important; */
   }
 
   .product-details {

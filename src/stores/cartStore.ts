@@ -1,13 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { Product } from "@/Interfaces/Product";
-import type { CartProduct } from "@/Interfaces/CartProduct";
-
-interface Cart {
-  cart: CartProduct[];
-  cartTotalPrice: number;
-  cartItemsNum: number;
-}
+import type { Cart } from "@/Interfaces/Cart";
 
 const saveToLocalStorage = (cart: Cart): void => {
   localStorage.setItem(
@@ -20,22 +14,15 @@ const saveToLocalStorage = (cart: Cart): void => {
   );
 };
 const fetchDataFromLocalStorage = (): Cart => {
-  return (
-    JSON.parse(localStorage.getItem("shop.co-cart")) || {
-      products: [],
-      cartTotalPrice: 0,
-      cartItemsNum: 0,
-    }
-  );
+  const cart: string | null = localStorage.getItem("shop.co-cart");
+
+  if (cart) return JSON.parse(cart);
+  else return { products: [], cartTotalPrice: 0, cartItemsNum: 0 };
 };
 
 export const useCartStore = defineStore("cart", () => {
-  const cart = ref<Cart>({
-    products: [],
-    cartTotalPrice: 0,
-    cartItemsNum: 0,
-  });
-  const isLoading = ref(false);
+  const cart = ref<Cart>({ products: [], cartTotalPrice: 0, cartItemsNum: 0 });
+  const isLoading = ref<boolean>(false);
 
   const getCart = (): void => {
     isLoading.value = true;
@@ -54,7 +41,7 @@ export const useCartStore = defineStore("cart", () => {
       total: product.price * quantity,
     };
 
-    if (cart.value.length === 0) {
+    if (cart.value.products.length === 0) {
       currentProducts.push(addedProduct);
     } else {
       const productIndex = currentProducts.findIndex(
@@ -83,6 +70,8 @@ export const useCartStore = defineStore("cart", () => {
       (item) => item.id === targetId
     );
 
+    if (!targetProduct) return;
+
     cart.value.products = cart.value.products.filter(
       (item) => item.id !== targetId
     );
@@ -90,11 +79,7 @@ export const useCartStore = defineStore("cart", () => {
     cart.value.cartTotalPrice -= targetProduct.total;
 
     if (cart.value.products.length === 0) {
-      cart.value = {
-        products: [],
-        cartTotalPrice: 0,
-        cartItemsNum: 0,
-      };
+      cart.value = { products: [], cartTotalPrice: 0, cartItemsNum: 0 };
     }
 
     saveToLocalStorage(cart.value);

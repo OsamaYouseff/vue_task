@@ -19,6 +19,7 @@ onMounted(() => {
 <template>
   <LoaderComponent v-if="isLoading" />
   <section class="container-lg mt-4">
+    <!-- NEW ARRIVALS -->
     <div class="new-arrivals py-4 d-flex flex-column">
       <h2 class="text-center fw-bold nb-3">NEW ARRIVALS</h2>
       <div
@@ -38,6 +39,8 @@ onMounted(() => {
         VIEW ALL
       </button>
     </div>
+
+    <!-- TOP SELLING -->
     <div class="top-selling py-5 d-flex flex-column border-0">
       <h2 class="text-center fw-bold nb-3">TOP SELLING</h2>
       <div

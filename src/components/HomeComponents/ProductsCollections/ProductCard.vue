@@ -1,11 +1,11 @@
 <script setup lang="ts">
 /// imports
-import Rating from "primevue/rating";
-import LoaderComponent from "@/components/LoaderComponent.vue";
 import { ref } from "vue";
 import { useCartStore } from "@/stores/cartStore";
-import type { Product } from "@/Interfaces/Product";
 import { storeToRefs } from "pinia";
+import type { Product } from "@/Interfaces/Product";
+import Rating from "primevue/rating";
+import LoaderComponent from "@/components/LoaderComponent.vue";
 
 const props = defineProps<{
   product: Product;
@@ -14,7 +14,6 @@ const props = defineProps<{
 /// refs
 const discountAvailable = ref<boolean>(true);
 const rating = ref<number>(4);
-
 const cartStore = useCartStore();
 const { isLoading } = storeToRefs(cartStore);
 
@@ -24,6 +23,7 @@ const goToTop = () => {
     window.location.href = "/product-details/ " + props.product.id;
   }
 };
+//// handlers
 const handelAddToCart = (): void => {
   cartStore.addToCart(props.product);
 };
@@ -112,7 +112,6 @@ const handelAddToCart = (): void => {
 }
 
 img {
-  /* width: 100%; */
   height: 100%;
 }
 
@@ -141,14 +140,8 @@ h5 {
 }
 
 .discount {
-  width: Fixed (58px) px;
-  height: Hug (28px) px;
-  top: 2219px;
-  left: 231px;
-  padding: 6px 14px 6px 14px;
-  gap: 12px;
+  padding: 4px 14px;
   border-radius: 62px;
-  opacity: 0px;
   background: hsla(0, 100%, 60%, 0.1);
   color: #ff3333;
 }

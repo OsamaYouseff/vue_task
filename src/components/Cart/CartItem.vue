@@ -1,20 +1,18 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import LoaderComponent from "@/components/LoaderComponent.vue";
-
-import type { CartProduct } from "@/Interfaces/CartProduct";
 import { storeToRefs } from "pinia";
 import { useCartStore } from "@/stores/cartStore";
-// Accessing the store
+import LoaderComponent from "@/components/LoaderComponent.vue";
+import type { CartProduct } from "@/Interfaces/CartProduct";
 
-const props = defineProps<{
-  cartItem: CartProduct;
-}>();
+const props = defineProps<{ cartItem: CartProduct }>();
 
+// Accessing the store & refs
 const productsStore = useCartStore();
 const { isLoading } = storeToRefs(productsStore);
 const itemQuantity = ref<number>(props.cartItem.quantity);
 
+//// handlers
 const handelDeleteProduct = () => {
   productsStore.deleteFromCart(props.cartItem.id);
 };
@@ -23,6 +21,7 @@ const handelIncreaseQuantity = () => {
   productsStore.increaseQuantity(props.cartItem.id);
   itemQuantity.value++;
 };
+
 const handelDecreaseQuantity = () => {
   productsStore.decreaseQuantity(props.cartItem.id);
   itemQuantity.value--;

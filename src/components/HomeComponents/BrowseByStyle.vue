@@ -6,7 +6,6 @@ import { useProductsStore } from "@/stores/productsStore";
 // Accessing the store
 
 const productsStore = useProductsStore();
-
 const { categories } = storeToRefs(productsStore);
 
 onMounted(() => {
@@ -22,16 +21,16 @@ onMounted(() => {
         style="gap: 20px"
       >
         <div class="img-container first d-md-w-100" style="width: 36%">
-          <span class="style">{{ categories[0] }}</span>
+          <span class="style">{{ categories?.[0] }}</span>
         </div>
         <div class="img-container second d-md-w-100" style="width: 60%">
-          <span class="style">{{ categories[1] }}</span>
+          <span class="style">{{ categories?.[1] }}</span>
         </div>
         <div class="img-container third d-md-w-100" style="width: 60%">
-          <span class="style">{{ categories[3] }}</span>
+          <span class="style">{{ categories?.[3] }}</span>
         </div>
         <div class="img-container fourth d-md-w-100" style="width: 36%">
-          <span class="style">{{ categories[2] }}</span>
+          <span class="style">{{ categories?.[2] }}</span>
         </div>
       </div>
     </div>

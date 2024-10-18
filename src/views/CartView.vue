@@ -9,8 +9,9 @@ import { watch } from "vue";
 // Accessing the store
 const productsStore = useCartStore();
 const { cart, isLoading } = storeToRefs(productsStore);
+import type { PriceInfo } from "@/Interfaces/PriceInfo";
 
-const priceInfo = ref<object>({
+const priceInfo = ref<PriceInfo>({
   subtotal: 0,
   discount: 0,
   deliveryFee: 0,
@@ -40,7 +41,6 @@ watch(
   () => cart.value,
   () => calcTotalPrice()
 );
-
 </script>
 
 <template>
@@ -60,7 +60,6 @@ watch(
       <h1 class="fw-bolder mb-3">YOUR CART</h1>
 
       <div class="pb-5 d-flex gap-3 flex-wrap justify-content-between">
-
         <!-- Cart content -->
         <div class="cart-content d-flex flex-column justify-content-start">
           <div v-if="cart.products.length > 0">
@@ -144,7 +143,6 @@ watch(
             />
           </button>
         </div>
-        
       </div>
     </div>
   </section>

@@ -6,7 +6,7 @@ const props = defineProps({
   testimonial: Object,
 });
 
-const rating = ref(props.testimonial.rating);
+const rating = ref(props?.testimonial?.rating);
 </script>
 <template>
   <div class="card p-4 rounded-4">
@@ -23,11 +23,11 @@ const rating = ref(props.testimonial.rating);
     />
 
     <div class="customer-name mb-2 fs-5">
-      {{ props.testimonial.name }}
+      {{ props?.testimonial?.name }}
       <img src="@/assets/icons/verified.svg" alt="verified-icon" />
     </div>
     <p class="description" style="color: hsla(0, 0%, 0%, 0.6)">
-      {{ props.testimonial.description }}
+      {{ props?.testimonial?.description }}
     </p>
   </div>
 </template>

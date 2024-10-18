@@ -4,10 +4,10 @@ import type { Product } from "@/Interfaces/Product";
 
 export const useProductsStore = defineStore("products", () => {
   const product = ref<Product | null>(null);
-  const products = ref([]);
-  const topProducts = ref([]);
-  const categories = ref([]);
-  const isLoading = ref(false);
+  const products = ref<Product[] | []>([]);
+  const topProducts = ref<Product[] | []>([]);
+  const categories = ref<string[] | null>([]);
+  const isLoading = ref<boolean>(false);
 
   const getProducts = async (limit: number = 4) => {
     isLoading.value = true;

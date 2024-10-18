@@ -10,13 +10,16 @@ const isVisible = ref<boolean>(true);
     class="sign-up-bar p-1 bg-black text-white d-flex justify-content-between align-items-center"
   >
     <div
-      class="container-lg position-relative d-flex align-items-center py-1 justify-content-center gap-1"
+      class="container-lg position-relative d-flex align-items-center py-1 justify-content-center gap-1 px-0"
     >
-      <p>Sign up and get 20% off to your first order.</p>
-      <a href="#" class="text-white">Sign Up Now</a>
+      <p class="mb-0 small-text">
+        Sign up and get 20% off to your first order.
+      </p>
+      <a href="#" class="text-white small-text">Sign Up Now</a>
       <div
         @click="isVisible = false"
-        class="close-btn d-none d-sm-block position-absolute top-0 d-flex align-items-center justify-content-center"
+        class="close-btn d-none d-sm-block position-absolute top-0 end-0 d-flex align-items-center justify-content-center"
+        style="cursor: pointer"
       >
         <i class="bi bi-x text-white fs-4"></i>
       </div>
@@ -25,19 +28,8 @@ const isVisible = ref<boolean>(true);
 </template>
 
 <style scoped>
-.container-lg {
-  padding-right: 0 !important;
-  padding-left: 0 !important;
-}
-
-.close-btn {
-  cursor: pointer;
-  right: 0 !important;
-}
-
 @media (max-width: 768px) {
-  p,
-  a {
+  .small-text {
     font-size: 12px;
   }
 }
