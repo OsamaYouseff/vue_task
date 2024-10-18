@@ -40,7 +40,7 @@ const images: Image[] = [
 ];
 const itemQuantity = ref<number>(1);
 const discountAvailable = ref<boolean>(true);
-const rating = ref<number>(4);
+const rating = ref<number | undefined>(product.value?.rating.rate || 0);
 const activeImg = ref<number>(0);
 const activeColor = ref<number>(0);
 const activeSize = ref<number>(2);
@@ -78,7 +78,11 @@ watch(
     if (newProduct && newProduct.image) {
       currentImgUrl.value = String(newProduct.image);
     }
+    if (newProduct && newProduct.rating) {
+      rating.value = newProduct.rating.rate;
+    }
   },
+
   { immediate: true }
 );
 </script>
@@ -161,7 +165,7 @@ watch(
                 readonly
               />
               <p class="ms-2 mb-0" style="color: #666666; font-size: 14px">
-                <span class="text-black">{{ rating.toFixed(1) }}</span
+                <span class="text-black">{{ rating?.toFixed(1) }}</span
                 >/5
               </p>
             </div>

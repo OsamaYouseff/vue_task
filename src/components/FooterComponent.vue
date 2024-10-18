@@ -1,10 +1,11 @@
 <script setup lang="ts"></script>
 <template>
   <footer>
-
     <!-- news letter -->
     <div class="container-lg">
-      <div class="news-letter bg-black text-white p-5 d-flex justify-content-between gap-3" >
+      <div
+        class="news-letter bg-black text-white p-5 d-flex justify-content-between gap-3"
+      >
         <h2>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h2>
         <div
           class="input-group d-flex align-items-center gap-3 flex-column justify-content-center"
@@ -23,7 +24,6 @@
         </div>
       </div>
 
-
       <!-- footer -->
       <div class="footer-details p-5 d-flex justify-content-between flex-wrap">
         <div class="social-box">
@@ -38,16 +38,19 @@
           </p>
           <div class="social-icons d-flex gap-3 align-items-center mt-3">
             <span>
-              <i class="bi bi-twitter"></i>
+              <img src="@/assets/icons/logo-twitter.svg" alt="twitter-logo" />
+            </span>
+            <span class="bg-black">
+              <img src="@/assets/icons/logo-fb.svg" alt="facebook-logo" />
             </span>
             <span>
-              <i class="bi bi-facebook"></i>
+              <img
+                src="@/assets/icons/logo-instagram.svg"
+                alt="instagram-logo"
+              />
             </span>
             <span>
-              <i class="bi bi-instagram"></i>
-            </span>
-            <span>
-              <i class="bi bi-github"></i>
+              <img src="@/assets/icons/logo-github.svg" alt="github-logo" />
             </span>
           </div>
         </div>
@@ -121,6 +124,7 @@ footer {
   .news-letter {
     margin-top: 12.5rem;
     margin-bottom: -10.625rem;
+    padding: 30px 20px !important;
   }
 }
 
@@ -145,7 +149,7 @@ footer {
 
 .input-container img {
   position: absolute;
-  left: .9375rem;
+  left: 0.9375rem;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -154,14 +158,20 @@ input {
   padding-left: 3.125rem;
 }
 
+@media (max-width: 48rem) {
+  input {
+    font-size: 14px;
+  }
+}
+
 button {
   height: 2.875rem;
 }
 
 .footer-details {
   margin-top: -3.125rem;
-  border-bottom: .0625rem solid hsla(0, 0%, 0%, 0.1);
-  gap: .9375rem 0;
+  border-bottom: 0.0625rem solid hsla(0, 0%, 0%, 0.1);
+  gap: 0.9375rem 0;
 }
 
 .footer-details > div {
@@ -173,8 +183,8 @@ button {
 }
 @media (max-width: 48rem) {
   .footer-details {
-    padding-left: .625rem !important;
-    padding-right: .625rem !important;
+    padding-left: 0.625rem !important;
+    padding-right: 0.625rem !important;
   }
 
   .social-box {
@@ -188,7 +198,7 @@ button {
 }
 
 .social-icons span {
-  padding: .3125rem;
+  padding: 0.3125rem;
   width: 1.875rem;
   height: 1.875rem;
   display: flex;
@@ -196,15 +206,8 @@ button {
   align-items: center;
   border-radius: 50%;
   cursor: pointer;
-  background: #f0f0f0;
-  color: #000;
   transition: all 0.35s ease;
-  border: .0625rem solid hsla(0, 0%, 0%, 0.2);
-}
-
-.social-icons span:hover {
-  background: #000;
-  color: white;
+  border: 0.0625rem solid hsla(0, 0%, 0%, 0.2);
 }
 
 a {
@@ -222,13 +225,13 @@ h5 {
 
 .payments img {
   width: 4.375rem;
-  transform: translateX(.625rem);
+  transform: translateX(0.625rem);
   cursor: pointer;
 }
 @media (max-width: 48rem) {
   .copyright {
     justify-content: center !important;
-    gap: .625rem 0;
+    gap: 0.625rem 0;
   }
   .payments img {
     transform: translateX(0rem);

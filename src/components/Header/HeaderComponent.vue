@@ -61,9 +61,11 @@ watch(
           class="form-control rounded-pill pl-4"
           placeholder="Search for products..."
         />
-        <i
-          class="bi bi-search position-absolute top-50 start-0 translate-middle-y"
-        ></i>
+        <img
+          class="bi-search position-absolute top-50 start-0 translate-middle-y"
+          src="@/assets/icons/search-icon.svg"
+          alt=""
+        />
       </div>
 
       <!-- icons -->
@@ -135,7 +137,7 @@ input {
 }
 
 .bi-search {
-  left: 0.9375rem !important;
+  left: 10px !important;
   color: #909090;
   font-weight: bold;
 }

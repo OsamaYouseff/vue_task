@@ -13,7 +13,7 @@ const props = defineProps<{
 
 /// refs
 const discountAvailable = ref<boolean>(true);
-const rating = ref<number>(4);
+const rating = ref<number>(props.product.rating.rate);
 const cartStore = useCartStore();
 const { isLoading } = storeToRefs(cartStore);
 
@@ -127,6 +127,11 @@ h5 {
   .card {
     max-width: 168px !important;
     padding: 0;
+  }
+  .img-container {
+    min-height: 100px;
+    max-height: 140px;
+    min-width: 140px;
   }
   .img {
     min-height: 180px;
