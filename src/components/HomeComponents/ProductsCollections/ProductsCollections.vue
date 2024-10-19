@@ -41,6 +41,7 @@ const showedProductsNum2 = ref<number>(4);
 <style scoped>
 .new-arrivals {
   border-bottom: 1px solid #e6e6e6;
+  padding: 0 20px;
 }
 
 h2 {
@@ -56,6 +57,8 @@ button {
 }
 
 @media (max-width: 48rem) {
+  .new-arrivals {
+  }
   .products {
     justify-content: center !important;
   }
