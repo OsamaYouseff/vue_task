@@ -58,6 +58,7 @@ button {
 
 @media (max-width: 48rem) {
   .new-arrivals {
+    padding: 0;
   }
   .products {
     justify-content: center !important;
