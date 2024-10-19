@@ -109,6 +109,12 @@ h2 {
   right: -30%;
 }
 
+@media (max-width: 1200px) {
+  .wrapper {
+    overflow: hidden;
+  }
+}
+
 @media (max-width: 768px) {
   .wrapper {
     overflow: hidden;

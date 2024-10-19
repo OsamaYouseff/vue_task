@@ -85,6 +85,9 @@ button {
   .products {
     justify-content: center !important;
   }
+  .new-arrivals {
+    padding: 0;
+  }
   h2 {
     font-size: 32px;
   }
