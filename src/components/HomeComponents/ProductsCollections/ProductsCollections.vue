@@ -66,6 +66,7 @@ onMounted(() => {
 <style scoped>
 .new-arrivals {
   border-bottom: 1px solid #e6e6e6;
+  padding: 0 20px;
 }
 
 h2 {
